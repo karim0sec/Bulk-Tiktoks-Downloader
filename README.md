@@ -2,7 +2,7 @@
 two scripts to download tiktok clips without watermark to be used in youtube shorts new service, used node js to grab links , python to download bulk links
 
 requirements:
-Python
+Python,
 Node Js + Puppeteer
 
 How to use:
