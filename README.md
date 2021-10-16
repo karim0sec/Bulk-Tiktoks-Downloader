@@ -1,18 +1,16 @@
 # Tiktok2Youtube-shorts
-two scripts to download tiktok clips without watermark to be used in youtube shorts new service, used node js to grab links , python to download bulk links
+simple script to download tiktok clips without watermark, used node js+ puppeteer
 
 requirements:
-Python, 
 Node Js + Puppeteer 
 
 How to use:
-Node tiktok.js in terminal or command prompt.   
-result will be saved in newapp.txt in same location.
+node tiktok in terminal or command prompt.   
+result will be saved in names.txt in same location.
 
-Remember to change Keyword (asmr) to keyword u want depend on content for 12 video at once.
+Remember to change Keyword (love) to keyword u want depend on content for 12 video at once.
 
-to download all links
-copy them to down.py
-Use it with: Python down.py         For bulk download
+all videos will be saved no watermark on script path
+now u can bulk upload to your youtube channel with just click make sure to not take a copyright music or videos!
 
 Cheers
