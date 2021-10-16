@@ -35,7 +35,7 @@ page.on('request', (request) => {
 //save videos names to files
   const fs = require('fs');
 
-  fs.appendFile('newapp.txt', videoDes + "\r\n" , function (err) {
+  fs.appendFile('names.txt', videoDes + "\r\n" , function (err) {
   if (err) throw err;
   console.log('Saved Videos names');
   });
