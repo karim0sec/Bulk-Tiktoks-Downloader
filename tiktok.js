@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer');
 const iPhone = puppeteer.devices['iPhone 6'];
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 //here we catch all requests to block
 //images & stylesheet & fonts to save data and speed up our scraper
