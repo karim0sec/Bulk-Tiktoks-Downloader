@@ -28,8 +28,14 @@ edit keyword in tiktok or user profile url in allvideos..
 
 in terminal or command prompt use:
 + node tiktok
+
+
 for keyword videos download or 
+
+
 + node allvideosuser
+
+
 for download all videos of single user    
 result will be saved in names.txt and videos in same location.
 
