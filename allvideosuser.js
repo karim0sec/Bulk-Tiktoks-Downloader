@@ -9,7 +9,7 @@ puppeteer.use(stealthPlugin);
 
 main();
 async function main() {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch( { headless: true } );
   const page = await browser.newPage();
 
   await page.evaluateOnNewDocument(() => {
@@ -39,15 +39,23 @@ async function main() {
       //becareful that can be alot of gigas if profile has a lot of videos
     for (var i=0;i<urls.length;i++) //you can limit number of videos by replace url.length by number
     {
-
-    await page.waitForTimeout(1210);
+      function getRandomNumber() {
+        var random = Math.floor(Math.random() * (500 - 300 + 1)) + 300;
+         return random;
+       };
+       function getHighNumber() {
+        var random = Math.floor(Math.random() * (500 - 300 + 1)) + 1150;
+         return random;
+       };
+    await page.waitForTimeout(getHighNumber());
     await page.goto('https://snaptik.app/');
-    await page.waitForTimeout(300);
+    await page.waitForTimeout(getRandomNumber());
     await page.waitForSelector('input[name="url"]');
-    await page.type('input[name="url"]' , (urls[i])); //type result of links
-    await page.waitForTimeout(300);
-    await page.keyboard.press('Enter');
-    await page.waitForTimeout(500);
+    await page.type('input[name="url"]' , (urls[i]) , {delay: 100}); //type result of links
+    await page.waitForTimeout(getRandomNumber());
+    // await page.keyboard.press('Enter');
+    await page.click('#submiturl')
+    await page.waitForTimeout(getHighNumber());
     await page.waitForXPath('//*[@id="download-block"]/div/a[1]');
     const featureArticle = (await page.$x('//*[@id="download-block"]/div/a[1]'))[0];
     // the same as:
