@@ -94,10 +94,10 @@ async function main() {
             });
         }
 
-         request.setTimeout(60000, function() { // if after 60s file not downlaoded, we abort a request 
-            request.destroy();
-    });
-    });
+    //     request.setTimeout(60000, function() { // if after 60s file not downlaoded, we abort a request 
+      //      request.destroy();
+    //});
+    //});
     ;};
 
   
