@@ -26,7 +26,8 @@ async function main() {
     }
   })
 
-  await page.goto(`https://tiktok.com/@karim90101`); //change this to user url page
+  await page.goto(`https://www.tiktok.com/@willsmith`); //change this to user url page
+  let username = page.url().slice(23,).replace(/[-:.\/*<>|?]/g,"");
 
   //scroll down until no more videos
   await autoScroll(page);
@@ -72,10 +73,17 @@ async function main() {
     
     const https = require('https');
     const ds = require('fs');
+
     
      // link to file you want to download
-    const path = './' // location to save videos
-
+     const path = './'+username+'/'; // location to save videos
+     try {
+       if (!ds.existsSync(path)) {
+         ds.mkdirSync(path)
+       }
+     } catch (err) {
+       console.error(err)
+     }
     const request = https.get(content, function(response) {
         if (response.statusCode === 200) {
             var file = ds.createWriteStream(path+link+'.mp4');
