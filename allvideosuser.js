@@ -26,7 +26,7 @@ async function main() {
     }
   })
 
-  await page.goto(`https://www.tiktok.com/@willSmith`); //change this to user url page
+  await page.goto(`https://tiktok.com/@karim90101`); //change this to user url page
 
   //scroll down until no more videos
   await autoScroll(page);
@@ -52,6 +52,7 @@ async function main() {
     await page.waitForTimeout(getRandomNumber());
     await page.waitForSelector('input[name="url"]');
     await page.type('input[name="url"]' , (urls[i]) , {delay: 100}); //type result of links
+    let link = (urls[i]).slice(-19)
     await page.waitForTimeout(getRandomNumber());
     // await page.keyboard.press('Enter');
     await page.click('#submiturl')
@@ -75,14 +76,9 @@ async function main() {
      // link to file you want to download
     const path = './' // location to save videos
 
-    //genrate random number for file name
-    function getRandomFileName() {
-      var timestamp = new Date().toISOString().replace(/[-:.]/g,"");    
-      return timestamp;
-      }
     const request = https.get(content, function(response) {
         if (response.statusCode === 200) {
-            var file = ds.createWriteStream(path+getRandomFileName()+'.mp4');
+            var file = ds.createWriteStream(path+link+'.mp4');
             response.pipe(file);
             console.log(file.path + ' Saved!')
             
@@ -94,9 +90,9 @@ async function main() {
             });
         }
 
-    //     request.setTimeout(60000, function() { // if after 60s file not downlaoded, we abort a request 
-      //      request.destroy();
-    //});
+        // request.setTimeout(60000, function() { // if after 60s file not downlaoded, we abort a request 
+        //     request.destroy();
+    // });
     });
     ;};
 
