@@ -33,7 +33,7 @@ async function main() {
   await autoScroll(page);
 
   const urls = await page.evaluate(() => 
-    Array.from(document.querySelectorAll('div.tt-feed > div > div > div > div > div > a'), element => element.href));
+    Array.from(document.querySelectorAll('div.tiktok-1qb12g8-DivThreeColumnContainer > div > div > div > div > div > a'), element => element.href));
 
   
 //loop on snaptik for no watermark tiktok videos
