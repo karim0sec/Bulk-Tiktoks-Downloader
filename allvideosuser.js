@@ -1,3 +1,4 @@
+const { url } = require("inspector");
 const puppeteer = require("puppeteer-extra");
 const stealthPlugin = require("puppeteer-extra-plugin-stealth")();
 
@@ -37,7 +38,17 @@ const userLink = args[0]
   const urls = await page.evaluate(() => 
     Array.from(document.querySelectorAll('div.tiktok-1qb12g8-DivThreeColumnContainer > div > div > div > div > div > a'), element => element.href));
 
-  
+  var videoDes = await page.evaluate(() =>Array.from(document.querySelectorAll('div.tiktok-1qb12g8-DivThreeColumnContainer.eegew6e2 > div > div > div > a')).map((items) => items.innerText))
+    
+    for (var i=videoDes.length; i--;) {
+      videoDes[i] = videoDes[i] + ' #shorts' + "\r\n" ;}; //append #shorts for each video title
+      const fs = require('fs');
+
+      fs.appendFile('names.txt', videoDes + '', function (err) {
+        if (err) throw err;
+        console.log('Descriptions Saved!');
+      });
+        console.log('now it downloading ' +urls.length+ ' video' ) 
 //loop on snaptik for no watermark tiktok videos
       //becareful that can be alot of gigas if profile has a lot of videos
     for (var i=0;i<urls.length;i++) //you can limit number of videos by replace url.length by number
@@ -94,7 +105,7 @@ const userLink = args[0]
             
             const fs = require('fs');
 
-            fs.appendFile('names.txt',file.path + "\r\n" , function (err) {
+            fs.appendFile('names.txt',file.path +  "\r\n" , function (err) {
             if (err) throw err;
             console.log('Done');
             });
