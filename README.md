@@ -1,7 +1,7 @@
 # Tiktok2Youtube-shorts
 simple script to download tiktok clips without watermark, used node js+ puppeteer
 
-allvideosuser script bulk download all videos of single user
+allvideosuser script bulk download all videos of single user and descriptions add #shorts to it result in names.txt
 
 tiktok script download videos and descriptions from search result and add #shorts to it // Not working it needs update
 
