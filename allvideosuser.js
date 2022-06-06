@@ -25,8 +25,10 @@ async function main() {
       request.continue();
     }
   })
+const args = process.argv.slice(2)
+const userLink = args[0]
 
-  await page.goto(`https://www.tiktok.com/@willsmith`); //change this to user url page
+  await page.goto(userLink); //change this to user url page
   let username = page.url().slice(23,).replace(/[-:.\/*<>|?]/g,"");
 
   //scroll down until no more videos
@@ -105,8 +107,8 @@ async function main() {
     ;};
 
   
-  browser.close();
-}
+    browser.close();
+  }
 
 async function autoScroll(page){
   await page.evaluate(async () => {
