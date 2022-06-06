@@ -3,7 +3,7 @@ simple script to download tiktok clips without watermark, used node js+ puppetee
 
 allvideosuser script download all videos of single user
 
-tiktok script download videos and descriptions from search result and add #shorts to it 
+tiktok script download videos and descriptions from search result and add #shorts to it // Not working in need update
 
 warning that script does bulk download, it can be alot of gigas depends on keyword or profile videos 
 
