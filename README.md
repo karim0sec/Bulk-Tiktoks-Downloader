@@ -27,19 +27,17 @@ After install Node js use this commands in project directory:
 edit keyword in tiktok or user profile url in allvideos..
 
 in terminal or command prompt use:
-+ node tiktok
++ node tiktok // this script not working for now use one user videos insted
 
 
-for keyword videos download or 
+for keyword videos download or in command line in terminal write  
 
 
-+ node allvideosuser
++ node allvideosuser https://www.tiktok.com/@davidbeckham
 
-
+of course change username davidbeckham to whatever user you want
 for download all videos of single user    
-result will be saved in names.txt and videos in same location.
-
-Remember to change Keyword (@willSmith) to keyword or id
+result will be saved in names.txt and videos in username folder location.
 
 all videos will be saved no watermark unless the user reupload his clips with logo
 now u can bulk upload to your youtube channel with just click make sure to not take a copyright music or videos!
