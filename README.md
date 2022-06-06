@@ -30,7 +30,7 @@ in terminal or command prompt use:
 + node tiktok // this script not working for now use one user videos insted
 
 
-for keyword videos download or in command line in terminal write  
+ in command line in terminal write  
 
 
 + node allvideosuser https://www.tiktok.com/@davidbeckham
