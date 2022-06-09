@@ -1,4 +1,4 @@
-# Tiktok2Youtube-shorts
+# Bulk-Tiktoks-Downloader
 simple script to bulk download tiktok clips without watermark, used node js+ puppeteer
 
 allvideosuser script bulk download all tiktok videos of single user and descriptions add #shorts to it result in names.txt
@@ -33,7 +33,7 @@ for download all videos of single user
 result will be saved in names.txt and videos in username folder location.
 
 all videos will be saved no watermark unless the user reupload his clips with logo
-now u can bulk upload to your youtube shorts reels or spotlight with just click make sure to not take a copyright music or videos!
+now u can bulk upload to your youtube shorts fb reels or snapchat spotlight with just click make sure to not take a copyright music or videos!
 
 
 i made it for personal use but you are free to use or update
