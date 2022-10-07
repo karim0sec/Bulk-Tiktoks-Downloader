@@ -1,5 +1,7 @@
 const { url } = require("inspector");
+const { abort, nextTick } = require("process");
 const puppeteer = require("puppeteer-extra");
+const { PassThrough } = require("stream");
 const stealthPlugin = require("puppeteer-extra-plugin-stealth")();
 
 ["chrome.runtime", "navigator.languages"].forEach(a =>
@@ -28,6 +30,7 @@ async function main() {
   })
 const args = process.argv.slice(2)
 const userLink = args[0]
+
 
   await page.goto(userLink); //change this to user url page
   let username = page.url().slice(23,).replace(/[-:.\/*<>|?]/g,"");
@@ -72,17 +75,11 @@ const userLink = args[0]
     await page.click('#submiturl')
     await page.waitForTimeout(getHighNumber());
     await page.waitForXPath('//*[@id="download-block"]/div/a[1]');
-    const featureArticle = (await page.$x('//*[@id="download-block"]/div/a[1]'))[0];
-    // the same as:
-    // const featureArticle = await page.$('#mp-tfa');
+    const snaptik = await page.$eval("#download-block > div > a:nth-child(1)", (elm) => elm.href);
 
-    const text = await page.evaluate(el => {
-        // do what you want with featureArticle in page.evaluate
-        return el.href;
-    }, featureArticle);
-    var noWaterMark = text
-    const content = decodeURIComponent(noWaterMark);
-
+    const param = snaptik.split(".");
+    const decode = Buffer.from(param[3], 'base64').toString('ascii').split('"');
+    const content = decodeURIComponent(decode[3]);
     
     const https = require('https');
     const ds = require('fs');
