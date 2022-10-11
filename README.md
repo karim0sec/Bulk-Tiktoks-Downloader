@@ -1,4 +1,4 @@
-# Bulk-Tiktoks-Downloader
+# BulkToks
 simple script to bulk download tiktok clips without watermark, used node js+ puppeteer
 
 allvideosuser script bulk download all tiktok videos of single user and descriptions add #shorts to it result in names.txt
