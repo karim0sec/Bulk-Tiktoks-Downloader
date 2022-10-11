@@ -1,0 +1,143 @@
+const { url } = require("inspector");
+const { abort, nextTick } = require("process");
+const puppeteer = require("puppeteer-extra");
+const { PassThrough } = require("stream");
+const stealthPlugin = require("puppeteer-extra-plugin-stealth")();
+
+["chrome.runtime", "navigator.languages"].forEach(a =>
+  stealthPlugin.enabledEvasions.delete(a)
+);
+
+puppeteer.use(stealthPlugin);
+
+main();
+async function main() {
+  const browser = await puppeteer.launch( { headless: true } );
+  const page = await browser.newPage();
+
+  await page.evaluateOnNewDocument(() => {
+    delete navigator.__proto__.webdriver;
+  });
+  //We stop images and stylesheet to save data
+  await page.setRequestInterception(true);
+
+  page.on('request', (request) => {
+    if(['image', 'stylesheet', 'font'].includes(request.resourceType())) {
+      request.abort();
+    } else {
+      request.continue();
+    }
+  })
+const args = process.argv.slice(2)
+const userLink = args[0]
+const nVideos = parseInt(args[1])
+
+  await page.goto(userLink); //Change this to user url page
+  let username = page.url().slice(23,).replace(/[-:.\/*<>|?]/g,"");
+
+  //Scroll down until no more videos
+  await autoScroll(page);
+
+  const urls = await page.evaluate(() => 
+    Array.from(document.querySelectorAll('div.tiktok-1qb12g8-DivThreeColumnContainer > div > div > div > div > div > a'), element => element.href));
+
+  var videoDes = await page.evaluate(() =>Array.from(document.querySelectorAll('div.tiktok-1qb12g8-DivThreeColumnContainer.eegew6e2 > div > div > div > a')).map((items) => items.innerText))
+    
+    for (var i=videoDes.length; i--;) {
+      videoDes[i] = videoDes[i] + ' #shorts' + "\r\n" ;}; //Append #shorts for each video title
+      const fs = require('fs');
+      fs.appendFile('names.txt', videoDes + '', function (err) {
+        if (err) throw err;
+        console.log('Descriptions Saved!');
+      });
+      // If no. of videos that need to be downloaded is less than total videos
+      // then download nVideos
+      if(nVideos<urls.length)
+        console.log('Now Downloading ' +nVideos+ ' Video(s)' ) 
+      // Else if total videos is less than the given number, than download all videos
+      else
+        console.log('Now Downloading ' +urls.length+ ' Video(s)' ) 
+      //Loop on snaptik for no watermark tiktok videos
+      //Be careful that can be alot of GBs if the profile has a lot of videos
+    for (var i=0;i<urls.length && i<nVideos;i++) //You can limit number of videos by replace url.length by number
+    {
+      function getRandomNumber() {
+        var random = Math.floor(Math.random() * (500 - 300 + 1)) + 300;
+         return random;
+       };
+       function getHighNumber() {
+        var random = Math.floor(Math.random() * (500 - 300 + 1)) + 1150;
+         return random;
+       };
+    await page.waitForTimeout(getHighNumber());
+    await page.goto('https://snaptik.app/');
+    await page.waitForTimeout(getRandomNumber());
+    await page.waitForSelector('input[name="url"]');
+    await page.type('input[name="url"]' , (urls[i]) , {delay: 100}); //Type result of links
+    let link = (urls[i]).slice(-19)
+    await page.waitForTimeout(getRandomNumber());
+    // await page.keyboard.press('Enter');
+    await page.click('#submiturl')
+    await page.waitForTimeout(getHighNumber());
+    await page.waitForXPath('//*[@id="download-block"]/div/a[1]');
+    const snaptik = await page.$eval("#download-block > div > a:nth-child(1)", (elm) => elm.href);
+
+    const param = snaptik.split(".");
+    const decode = Buffer.from(param[3], 'base64').toString('ascii').split('"');
+    const content = decodeURIComponent(decode[3]);
+    
+    const https = require('https');
+    const ds = require('fs');
+
+    
+     // Link to file you want to download
+     const path = './'+username+'/'; // Location to save videos
+     try {
+       if (!ds.existsSync(path)) {
+         ds.mkdirSync(path)
+       }
+     } catch (err) {
+       console.error(err)
+     }
+    const request = https.get(content, function(response) {
+        if (response.statusCode === 200) {
+            var file = ds.createWriteStream(path+link+'.mp4');
+            response.pipe(file);
+            console.log(file.path + ' Saved!')
+            
+            const fs = require('fs');
+
+            fs.appendFile('names.txt',file.path +  "\r\n" , function (err) {
+            if (err) throw err;
+            console.log('Done');
+            });
+        }
+
+        // request.setTimeout(60000, function() { // if after 60s file not downlaoded, we abort a request 
+        //     request.destroy();
+    // });
+    });
+    ;};
+
+  
+    browser.close();
+  }
+
+async function autoScroll(page){
+  await page.evaluate(async () => {
+      await new Promise((resolve, reject) => {
+          var totalHeight = 0;
+          var distance = 100;
+          var timer = setInterval(() => {
+              var scrollHeight = document.body.scrollHeight;
+              window.scrollBy(0, distance);
+              totalHeight += distance;
+
+              if(totalHeight >= scrollHeight){
+                  clearInterval(timer);
+                  resolve();
+              }
+          }, 100);
+      });
+  });
+}

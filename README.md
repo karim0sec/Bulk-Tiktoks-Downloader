@@ -1,41 +1,48 @@
 # BulkToks
-simple script to bulk download tiktok clips without watermark, used node js+ puppeteer
+Simple script to bulk download tiktok clips without watermark, used node js+ puppeteer
 
-allvideosuser script bulk download all tiktok videos of single user and descriptions add #shorts to it result in names.txt
+- allvideosuser script bulk downloads all tiktok videos of a single user and the descriptions.
+- nvideosuser script bulk downloads n number of tiktok videos of a single user and the descriptions.
 
-warning that script does bulk download, it can be alot of gigas depends on keyword or profile videos 
+Note: Videos are stored in @username folder whereas the description is stored in names.txt
+Warning: Since the script bulk downloads, it can be alot of data depending on the number you enter or the number of videos a user has. 
 
 # requirements:
 + Node Js
-+ Puppeteer 
-
++ puppeteer 
 + puppeteer-extra-plugin-stealth
 + puppeteer-extra-plugin-adblocker
 + puppeteer-extra
-# Installtion:
-After install Node js use this commands in project directory:
 
-+ npm i Puppeteer
+# Installtion:
+After installing Node Js, navigate to the project directory and use this command:
+
++ npm i puppeteer
 
 + npm install puppeteer puppeteer-extra
 
 + npm install puppeteer-extra-plugin-stealth puppeteer-extra-plugin-adblocker
 
 # How to use:
-edit user profile url in allvideos..
 
-in terminal or command prompt use:
+Manual Way:
+For AllVideos, edit the user profile url in allvideosuser script.
+For nVideos, edit the user profile url & the nVideos parameter in nvideosuser script.
+
+Terminal Way:
+In the terminal or command prompt use:
 
 + node allvideosuser https://www.tiktok.com/@davidbeckham
++ node nvideosuser https://www.tiktok.com/@davidbeckham n
 
-of course change username davidbeckham to whatever user you want
-for download all videos of single user    
-result will be saved in names.txt and videos in username folder location.
-
-all videos will be saved no watermark unless the user reupload his clips with logo
-now u can bulk upload to your youtube shorts fb reels or snapchat spotlight with just click make sure to not take a copyright music or videos!
+Note: Replace n with your desired number in the second command. e.g; 2
 
 
-i made it for personal use but you are free to use or update
+Of course you can change the username davidbeckham to whatever user you want 
+to download all videos of single user.
+
+Results will be saved in names.txt and videos in username folder location.
+
+All videos will be saved without watermark unless the user reuploaded his clips with logo.
 
 Cheers
