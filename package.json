@@ -7,13 +7,11 @@
     "test": "node bulktok.js proflie url"
   },
   "keywords": [],
-  "author": "",
+  "author": "Karim ELsayed (karim0sec)",
   "license": "ISC",
   "dependencies": {
     "node-fetch": "^2.6.7",
     "puppeteer": "^19.0.0",
-    "puppeteer-extra": "^3.3.4",
-    "puppeteer-extra-plugin-adblocker": "^2.13.5",
-    "puppeteer-extra-plugin-stealth": "^2.11.1"
+    "puppeteer-extra": "^3.3.4"
   }
 }

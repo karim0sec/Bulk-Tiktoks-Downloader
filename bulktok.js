@@ -1,5 +1,6 @@
-const puppeteer = require("puppeteer-extra");
-const stealthPlugin = require("puppeteer-extra-plugin-stealth")();
+const vanillaPuppeteer = require('puppeteer');
+const { addExtra } = require('puppeteer-extra');
+const { pptr } = addExtra(vanillaPuppeteer);
 const fetch = require('node-fetch');
 const fs = require('fs');
 const https = require('https');
@@ -12,19 +13,10 @@ headers.append('User-Agent', 'TikTok 26.2.0 rv:262018 (iPhone; iOS 14.4.2; en_US
 headers.append('Content-Type', 'application/json');
 
 
-
-["chrome.runtime", "navigator.languages"].forEach(a =>
-  stealthPlugin.enabledEvasions.delete(a)
-);
-
-puppeteer.use(stealthPlugin);
-
- 
-
-
 main();
 async function main() {
-  const browser = await puppeteer.launch( { headless: true } );
+  //pptr.use(stealthPlugin())
+  const browser = await pptr.launch( { headless: true ,args: ['--chrome.runtime','--navigator.languages','--iframe.contentWindow']} );
   const page = await browser.newPage();
     page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36");
   //delete browser profile after finish
@@ -35,7 +27,6 @@ async function main() {
           chromeTmpDataDir = chromeSpawnArgs[i].replace("--user-data-dir=", "");
       }
   }
-
 
   await page.evaluateOnNewDocument(() => {
     delete navigator.__proto__.webdriver;
