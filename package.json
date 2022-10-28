@@ -1,0 +1,19 @@
+{
+  "name": "bulktok",
+  "version": "2.0.0",
+  "description": "",
+  "main": "allvideosuser.js",
+  "scripts": {
+    "test": "node allvideouser.js proflie url"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.6.7",
+    "puppeteer": "^19.0.0",
+    "puppeteer-extra": "^3.3.4",
+    "puppeteer-extra-plugin-adblocker": "^2.13.5",
+    "puppeteer-extra-plugin-stealth": "^2.11.1"
+  }
+}
