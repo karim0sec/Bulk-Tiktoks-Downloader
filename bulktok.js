@@ -77,6 +77,10 @@ async function main() {
         var nVideos = String(urls.length);
       }
 
+      browser.close();
+      if (chromeTmpDataDir !== null) {
+        fs.rm(chromeTmpDataDir, { recursive: true }, () => console.log('Deleted tmp profile'));
+      }
       // then download nVideos
       if(nVideos<=urls.length ){
         console.log('Now Downloading ' +nVideos+ ' Video(s)' )};
@@ -92,7 +96,7 @@ async function main() {
     let link = (urls[i]).slice(-19).toString();
     const content = await getvideourl()
     async function getvideourl(){
-      const API_URL = `https://api2.musical.ly/aweme/v1/feed/?aweme_id=${link}&version_code=262&app_name=musical_ly&channel=App&device_id=null&os_version=14.4.2&device_platform=iphone&device_type=iPhone9`;
+      const API_URL = `https://api19-core-useast5.us.tiktokv.com/aweme/v1/feed/?aweme_id=${link}&version_code=262&app_name=musical_ly&channel=App&device_id=null&os_version=14.4.2&device_platform=iphone&device_type=iPhone9`;
       const request = await fetch(API_URL, {
           method: "GET",
           headers:headers
@@ -132,10 +136,6 @@ async function main() {
     ;};
 
   
-    browser.close();
-    if (chromeTmpDataDir !== null) {
-      fs.rm(chromeTmpDataDir, { recursive: true }, () => console.log('Deleted tmp profile'));
-    }
 
   }
 
