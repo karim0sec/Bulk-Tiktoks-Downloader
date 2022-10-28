@@ -1,14 +1,15 @@
 const puppeteer = require("puppeteer-extra");
 const stealthPlugin = require("puppeteer-extra-plugin-stealth")();
-const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker');
-const fetch = require("node-fetch");
+const fetch = require('node-fetch');
 const fs = require('fs');
 const https = require('https');
 const {Headers} = require('node-fetch');
 
+
 //set a user-agent for fetch
 const headers = new Headers();
 headers.append('User-Agent', 'TikTok 26.2.0 rv:262018 (iPhone; iOS 14.4.2; en_US) Cronet');
+headers.append('Content-Type', 'application/json');
 
 
 
@@ -17,7 +18,9 @@ headers.append('User-Agent', 'TikTok 26.2.0 rv:262018 (iPhone; iOS 14.4.2; en_US
 );
 
 puppeteer.use(stealthPlugin);
-puppeteer.use(AdblockerPlugin({ blockTrackers: true }))
+
+ 
+
 
 main();
 async function main() {
@@ -47,8 +50,18 @@ async function main() {
       request.continue();
     }
   })
-const args = process.argv.slice(2)
-const userLink = args[0]
+
+
+  const args = process.argv.slice(2)
+  const userLink = (args[0])
+  if (userLink.includes("@")){
+    console.log("Getting links from "+userLink)
+  }else{
+    console.log("Syntax error: \n\r use it like that: node bulktok https://www.tiktok.com/@profile")
+    process.exit()
+  }
+  var nVideos = parseInt(args[1])
+
 
 
   await page.goto(userLink); //change this to user url page
@@ -68,17 +81,24 @@ const userLink = args[0]
         if (err) throw err;
         console.log('Descriptions Saved!');
       });
-        console.log('now it downloading ' +urls.length+ ' video' ) 
+      
+    if (args[1] == null || args[1] == NaN){
+        var nVideos = String(urls.length);
+      }
+
+      // then download nVideos
+      if(nVideos<=urls.length ){
+        console.log('Now Downloading ' +nVideos+ ' Video(s)' )};
 
       //becareful that can be alot of gigas if profile has a lot of videos
-    for (var i=0;i<urls.length;i++) //you can limit number of videos by replace url.length by number
+    for (var i=0;i<nVideos ;i++) //you can limit number of videos by replace url.length by number
     {
       function getRandomNumber() {
         var random = Math.floor(Math.random() * (500 - 300 + 1)) + 300;
          return random;
        };
     await page.waitForTimeout(getRandomNumber());
-    let link = (urls[i]).slice(-19);
+    let link = (urls[i]).slice(-19).toString();
     const content = await getvideourl()
     async function getvideourl(){
       const API_URL = `https://api2.musical.ly/aweme/v1/feed/?aweme_id=${link}&version_code=262&app_name=musical_ly&channel=App&device_id=null&os_version=14.4.2&device_platform=iphone&device_type=iPhone9`;
@@ -86,8 +106,9 @@ const userLink = args[0]
           method: "GET",
           headers:headers
       });
+      await sleep(getRandomNumber());
       const res = await request.json()
-      const getvideourl =  res.aweme_list[0].video.play_addr.url_list[0].split("?")[0]
+      const getvideourl =  res.aweme_list[0].video.play_addr.url_list[0]
       return getvideourl
   }
 
@@ -112,9 +133,9 @@ const userLink = args[0]
             });
         }
 
-        request.setTimeout(90000, function() { // if after 60s file not downlaoded, we abort a request 
+        request.setTimeout(60000, function() { // if after 60s file not downlaoded, we abort a request 
             request.destroy();
-            console.log('Cant download at video'+urls[i]);
+            console.log("Can't download video "+urls[i]);
     });
     });
     ;};
@@ -144,4 +165,7 @@ async function autoScroll(page){
           }, 100);
       });
   });
+}
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

@@ -1,8 +1,8 @@
 # BulkToks
 Simple script to bulk download tiktok clips without watermark, used node js+ puppeteer
 
-- allvideosuser script bulk downloads all tiktok videos of a single user and the descriptions.
-- nvideosuser script bulk downloads n number of tiktok videos of a single user and the descriptions.
+- Bulktok script bulk downloads all tiktok videos of a single user profileand the descriptions.
+- adding number after url argument bulk downloads number of tiktok videos of a single user and the descriptions.
 
 Note: Videos are stored in @username folder whereas the description is stored in names.txt
 Warning: Since the script bulk downloads, it can be alot of data depending on the number you enter or the number of videos a user has. 
@@ -25,14 +25,16 @@ navigate to the project directory and use this command:
 # How to use:
 
 Manual Way:
-For AllVideos, edit the user profile url in allvideosuser script.
-For nVideos, edit the user profile url & the nVideos parameter in nvideosuser script.
+edit the user profile url in bulktok script or edit the user profile url & the nVideos parameter in nvideosuser script.
 
 Terminal Way:
 In the terminal or command prompt use:
 
-+ node allvideosuser https://www.tiktok.com/@davidbeckham
-+ node nvideosuser https://www.tiktok.com/@davidbeckham n
++ node bulktok https://www.tiktok.com/@davidbeckham
+
+Or
+
++ node bulktok https://www.tiktok.com/@davidbeckham n
 
 Note: Replace n with your desired number in the second command. e.g; 2
 

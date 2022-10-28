@@ -1,10 +1,10 @@
 {
   "name": "bulktok",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "",
-  "main": "allvideosuser.js",
+  "main": "bulktok.js",
   "scripts": {
-    "test": "node allvideouser.js proflie url"
+    "test": "node bulktok.js proflie url"
   },
   "keywords": [],
   "author": "",
